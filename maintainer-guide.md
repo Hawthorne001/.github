@@ -71,7 +71,7 @@ git clone git@github.com:solidity-docs/<language-code>.git
 Remove files irrelevant to the translation
 ```
 cd <language-code>
-find . -mindepth 1 -maxdepth 1 ! \( -name "docs" -o -name "CMakeLists.txt" -o -name ".git" \) -exec git rm -r {} \;
+find . -mindepth 1 -maxdepth 1 ! \( -name "docs" -o -name "CMakeLists.txt" -o -name ".readthedocs.yml" -o -name ".git" \) -exec git rm -r {} \;
 ```
 
 Add a README
@@ -103,14 +103,14 @@ If the file is not present, the bot uses the following default configuration:
 
 ```json
 {
-    "disabled": false,
+    "disabled": true,
     "randomly_assign_maintainers": false,
     "pr_labels": [
         "sync-pr"
     ]
 }
 ```
-- `disabled` can be set to `true` to tell the bot that the maintainers of the repository do not want to receive sync PRs.
+- `disabled` can be set to `false` to tell the bot that the maintainers of the repository want to receive sync PRs per release.
     This is useful for example when the translators are targetting an older version of the documentation and would close these PRs anyway.
 - `randomly_assign_maintainers` makes the bot automatically assign maintainers and add reviewers to the PR.
     Users are randomly chosen from the `maintainers` array in [the JSON file corresponding to their repository](langs/).
